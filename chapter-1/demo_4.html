@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+   <!--v-on绑定click时间,并指向sayHi方法-->
+   <button v-on:click="sayHi">click me</button>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data:{
+            message: "vue study"
+        },
+        /*方法必须定义在vue实例的methods对象中*/
+        methods: {
+            sayHi: function (event){
+                alert(this.message);
+            }
+        }
+    });
+</script>
+</html>
