@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--组件: 传递给组件中的值;props-->
+  <shu-chang></shu-chang>
+
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+  /*定义一个Vue组件component*/
+  Vue.component("shu-chang",{
+    template: '<li>hello vue</li>',
+  });
+
+  var vm = new Vue({
+    el: "#app",
+  });
+</script>
+</html>
