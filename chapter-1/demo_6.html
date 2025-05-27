@@ -7,8 +7,8 @@
 <body>
 
 <div id="app">
-  <!--组件: 传递给组件中的值;props-->
-  <shu-chang></shu-chang>
+  <!--组件: 传递给组件中的值;props;item的值与sc绑定-->
+  <shu-chang v-for="item in items" v-bind:sc="item"></shu-chang>
 
 </div>
 
@@ -17,11 +17,15 @@
 <script>
   /*定义一个Vue组件component*/
   Vue.component("shu-chang",{
-    template: '<li>hello vue</li>',
+    props:['sc'], // 组件传递值通过props绑定,再传递到模版
+    template: '<li>{{sc}}</li>',
   });
 
   var vm = new Vue({
     el: "#app",
+    data: {
+      items: ["java","linux","vue"]
+    }
   });
 </script>
 </html>
