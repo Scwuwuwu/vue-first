@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    当前时间1: <p>{{ currentTime1()}}</p>
+    当前时间2: <p>{{currentTime2}}</p>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data:{
+            message:"hello sc!"
+        },
+        methods: {
+            currentTime1: function (){
+                return Date.now();
+            }
+        },
+        computed: { // 计算属性;计算属性和方法对象中的方法重名会导致计算属性的方法失效
+            currentTime2: function (){
+                this.message; // 计算属性;将计算结果保存在内存中,当计算属性中的方法有数据更改时,会重新计算属性;保存结果在属性中,作为缓存;
+                return Date.now();
+            }
+        }
+    });
+</script>
+</html>
