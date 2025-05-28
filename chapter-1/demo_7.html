@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="vue">
+    <!--从返回值中取出info.name的属性值并展示-->
+    <h1>{{info.name}}</h1>
+    <h2>{{info.address.street}}</h2>
+    <!--v-bind将href属性与info.url绑定-->
+    <a v-bind:href="info.url">点击进行页面跳转</a>
+</div>
+
+
+</body>
+<!--导入vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<!--导入Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#vue",
+
+        data(){
+            // 定义返回的数据格式
+            return{
+                // 请求的返回参数格式,必须和json字符串一样
+                info: {
+                    name: null,
+                    address: {
+                        street: null,
+                        city: null,
+                        country: null,
+                    },
+                    url: null
+                }
+            }
+        },
+        mounted(){  // 钩子函数,链式编程,ES6新规范
+            // get获取数据源;response为返回的对象
+            axios.get('../data.json').then(response=>(this.info=response.data));
+        }
+    });
+</script>
+</html>
