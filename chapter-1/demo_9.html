@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--todo为自定义组件,template定义组件模版,模版中添加插槽slot(另外一个组件),并指定slot对应的组件名-->
+    <todo>
+      <!--slot属性指定要插入的组件名
+        "title"对应着vue对象中data属性中的title属性值
+        v-bind:title这里的title标识给组件传入的title属性值;既组件title属性与vue对象的data属性的title属性进行相互绑定
+      -->
+      <todo-title slot="todo-title" v-bind:title="title"></todo-title>
+      <to-items slot="todo-items" v-for="item in items" v-bind:item="item"></to-items>
+    </todo>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+  Vue.component("todo",{
+      // 定义模版;添加slot,并指定组件名称
+      template: '<div>\
+                    <slot name="todo-title"></slot>\
+                    <ul>\
+                    <slot name="todo-items"></slot>\
+                    </ul>\
+                  </div>'
+  });
+  Vue.component("todo-title",{
+    props: ['title'],
+    template: '<div>{{title}}</div>'
+  });
+  Vue.component("to-items",{
+    props: ['item'],
+    template: '<li>{{item}}</li>>'
+  });
+
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      title: "sc is studying vue",
+      items: ["java","linux","vue"]
+    }
+  });
+</script>
+</html>
